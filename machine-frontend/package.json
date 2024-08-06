@@ -1,0 +1,30 @@
+{
+  "name": "machine-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@material/mwc-button": "^0.27.0",
+    "@material/mwc-textfield": "^0.27.0",
+    "@material/web": "^2.0.0",
+    "@nuxtjs/axios": "^5.13.6",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "aws-amplify": "^6.4.3",
+    "aws-sdk": "^2.1667.0",
+    "core-js": "^3.25.3",
+    "crypto-js": "^4.2.0",
+    "material-symbols": "^0.21.3",
+    "nuxt": "^2.15.8",
+    "rollup": "^4.20.0",
+    "vue": "^2.7.10",
+    "vue-native-websocket": "^2.0.15",
+    "vue-router": "^3.6.5",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  }
+}
