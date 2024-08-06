@@ -2,7 +2,7 @@
   <div>
     <header class="header-with-menu">
       <button @click="toggleMenu" class="menu-toggle-button">☰</button>
-      <h1 class="header-title">NO CAP</h1>
+      <h1 class="header-title">solarnative</h1>
     </header>
     <div class="side-menu" :class="{ 'open': isMenuOpen }">
       <div class="menu-header">
@@ -21,7 +21,6 @@
         <div><nuxt-link to="/inverter" class="menu-item">Inverter</nuxt-link></div>
         <div><nuxt-link to="/fabapp" class="menu-item">Fab App</nuxt-link></div>
         <div><nuxt-link to="/material3" class="menu-item">Material 3</nuxt-link></div>
-        <div><nuxt-link to="/spicy" class="menu-item">Hidden</nuxt-link></div>
       </div>
     </div>
   </div>

@@ -40,17 +40,17 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/',
+    baseURL: 'http://192.168.1.121:8000/api/',
     proxy: true,
   },
 
-  proxy: {
-    '/api/': {
-      target: 'https://fab.solarnative.cloud',
-      pathRewrite: {'^/api/': ''},
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'https://fab.solarnative.cloud',
+  //     pathRewrite: {'^/api/': ''},
+  //     changeOrigin: true,
+  //   },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -58,5 +58,10 @@ export default {
 
   features: {
     inlineStyles: false,  
-  }
+  },
+
+  server: {
+    host: '192.168.1.121',
+    port: '3000' // optional
+},
 }

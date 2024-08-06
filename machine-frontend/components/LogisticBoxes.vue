@@ -37,6 +37,7 @@
           />
           <button @click="fetchData">Apply</button>
         </div>
+        <div v-if="error" class="error">{{ error }}</div>
         <div v-if="loading" class="loading">Loading...</div>
         <div v-if="showSnackbar" class="snackbar">{{ error }}</div>
         <div v-if="data.length">
@@ -113,7 +114,7 @@ export default {
       data: [],
       loading: false,
       error: null,
-      logisticsBoxRegex: /^LB\d{2}(\d{4})$/,
+      logisticsBoxRegex: /^LB\d{6}(\d{4})$/,
       serialNumberRegex: /000002000[A-Z0-9]{5}/,
       showSnackbar: false,
       snackbarTimeout: null,
@@ -143,7 +144,7 @@ export default {
       this.error = null;
 
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/logisticsboxes/${logisticsBoxId}/exceptions/`);
+        const response = await fetch(`http://192.168.1.121:8000/api/logisticsboxes/${logisticsBoxId}/exceptions/`);
         if (!response.ok) throw new Error('Network response was not ok');
         const result = await response.json();
         this.data = result.map(item => ({
@@ -154,7 +155,6 @@ export default {
           logistics_box: logisticsBoxId 
         }));
         this.$emit('box-scanned', logisticsBoxId);
-        this.inputValue = '';
       } catch (err) {
         this.inputValue = '';
         this.error = err.message;
@@ -196,7 +196,7 @@ export default {
         this.searchValue = '';
 
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/exceptions/${item.serial_number}/`, {
+          const response = await fetch(`http://192.168.1.121:8000/api/exceptions/${item.serial_number}/`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -214,7 +214,7 @@ export default {
         if (this.data.every(item => item.flag)) {
           const logisticsBoxId = item.logistics_box;
           try {
-            await fetch(`http://127.0.0.1:8000/api/logisticsboxes/${logisticsBoxId}/`, {
+            await fetch(`http://192.168.1.121:8000/api/logisticsboxes/${logisticsBoxId}/`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json',
@@ -249,9 +249,9 @@ export default {
     searchBox() {
       const boxId = this.searchBoxId.trim();
       if (boxId) {
-        this.fetchBoxes(`http://127.0.0.1:8000/api/logisticsboxes/${boxId}`);
+        this.fetchBoxes(`http://192.168.1.121:8000/api/logisticsboxes/${boxId}`);
       } else {
-        this.fetchBoxes('http://127.0.0.1:8000/api/logisticsboxes/');
+        this.fetchBoxes('http://192.168.1.121:8000/api/logisticsboxes/');
       }
     },
     resetData() {
@@ -260,7 +260,7 @@ export default {
       this.$emit('reset-box');
     },
     created() {
-    this.fetchBoxes('http://127.0.0.1:8000/api/logisticsboxes/');
+    this.fetchBoxes('http://192.168.1.121:8000/api/logisticsboxes/');
     },
   },
 };
